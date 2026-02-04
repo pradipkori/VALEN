@@ -33,15 +33,31 @@ With all my love ❤️`
             transition={{ duration: 0.8, delay: 0.5 }}
             className="max-w-3xl mx-auto"
         >
-            <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-2xl p-8 md:p-12 border-4 border-valentine-light relative overflow-hidden">
+            <div className="shimmer bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 rounded-2xl shadow-2xl p-8 md:p-12 border-4 border-pink-300 relative overflow-hidden" style={{ boxShadow: '0 0 40px rgba(255, 107, 157, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.5)' }}>
                 {/* Paper texture overlay */}
                 <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')]"></div>
 
-                {/* Decorative hearts in corners */}
-                <div className="absolute top-4 left-4 text-4xl opacity-20">💕</div>
-                <div className="absolute top-4 right-4 text-4xl opacity-20">💕</div>
-                <div className="absolute bottom-4 left-4 text-4xl opacity-20">💕</div>
-                <div className="absolute bottom-4 right-4 text-4xl opacity-20">💕</div>
+                {/* Decorative roses in corners */}
+                <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="absolute top-4 left-4 text-4xl opacity-30"
+                >🌹</motion.div>
+                <motion.div
+                    animate={{ rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                    className="absolute top-4 right-4 text-4xl opacity-30"
+                >🌹</motion.div>
+                <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                    className="absolute bottom-4 left-4 text-4xl opacity-30"
+                >🌹</motion.div>
+                <motion.div
+                    animate={{ rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                    className="absolute bottom-4 right-4 text-4xl opacity-30"
+                >🌹</motion.div>
 
                 {/* Letter Header */}
                 <motion.div

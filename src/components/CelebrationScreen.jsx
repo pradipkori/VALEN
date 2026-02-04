@@ -35,7 +35,7 @@ const CelebrationScreen = ({ girlfriendName }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="min-h-screen bg-gradient-to-br from-valentine-pink via-pink-400 to-valentine-dark overflow-y-auto py-12 px-4 relative"
+            className="min-h-screen animated-gradient overflow-y-auto py-12 px-4 relative"
         >
             {/* Confetti */}
             {showConfetti && (
@@ -43,8 +43,21 @@ const CelebrationScreen = ({ girlfriendName }) => {
                     width={windowSize.width}
                     height={windowSize.height}
                     recycle={true}
-                    numberOfPieces={200}
-                    colors={['#ff6b9d', '#c44569', '#ffc2d1', '#b983ff', '#ff1493']}
+                    numberOfPieces={300}
+                    colors={['#ff6b9d', '#c44569', '#ffc2d1', '#b983ff', '#ff1493', '#ffd700']}
+                    drawShape={ctx => {
+                        // Draw hearts
+                        ctx.beginPath()
+                        const x = 0
+                        const y = 0
+                        ctx.moveTo(x, y + 5)
+                        ctx.bezierCurveTo(x, y + 3, x - 5, y, x - 5, y)
+                        ctx.bezierCurveTo(x - 5, y - 3, x - 3, y - 5, x, y - 2)
+                        ctx.bezierCurveTo(x + 3, y - 5, x + 5, y - 3, x + 5, y)
+                        ctx.bezierCurveTo(x + 5, y, x, y + 3, x, y + 5)
+                        ctx.closePath()
+                        ctx.fill()
+                    }}
                 />
             )}
 

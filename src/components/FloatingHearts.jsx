@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const FloatingHearts = ({ count = 20 }) => {
     const [hearts, setHearts] = useState([])
-    const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💞']
+    const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💞', '🌹', '✨', '💐']
 
     useEffect(() => {
         const newHearts = Array.from({ length: count }, (_, i) => ({

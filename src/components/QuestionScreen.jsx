@@ -52,7 +52,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="min-h-screen bg-gradient-to-br from-pink-300 via-pink-200 to-purple-200 flex items-center justify-center p-4 relative"
+            className="min-h-screen animated-gradient flex items-center justify-center p-4 relative"
         >
             <FloatingHearts count={20} />
 
@@ -67,14 +67,14 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                 initial={{ scale: 0.8, y: 50 }}
                 animate={{ scale: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="glass-effect rounded-3xl p-12 max-w-2xl w-full shadow-2xl relative z-20"
+                className="glass-effect shimmer rounded-3xl p-12 max-w-2xl w-full shadow-2xl relative z-20"
             >
                 {/* Title */}
                 <motion.h1
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
-                    className="font-handwriting text-6xl md:text-7xl text-valentine-dark text-center mb-8 text-shadow-soft"
+                    className="font-handwriting text-6xl md:text-7xl text-gradient text-center mb-8"
                 >
                     Hey {girlfriendName} ❤️
                 </motion.h1>
@@ -95,7 +95,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.9, type: 'spring', stiffness: 200 }}
-                    className="font-handwriting text-5xl md:text-6xl text-valentine-pink text-center mb-12 text-shadow-glow"
+                    className="font-handwriting text-5xl md:text-6xl text-gradient text-center mb-12 text-shadow-glow"
                 >
                     Will you be my Valentine? 💖
                 </motion.h2>
@@ -110,10 +110,10 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                     {/* YES Button */}
                     <motion.button
                         onClick={onYesClick}
-                        whileHover={{ scale: 1.1, y: -5 }}
+                        whileHover={{ scale: 1.15, y: -8 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{ scale: yesButtonScale }}
-                        className="bg-gradient-to-r from-valentine-pink to-valentine-dark text-white font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 animate-glow"
+                        className="shimmer bg-gradient-to-r from-valentine-pink via-pink-500 to-valentine-dark text-white font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 animate-glow relative overflow-hidden"
                     >
                         YES 💕
                     </motion.button>
@@ -133,7 +133,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                         whileHover={{ scale: 1.05 }}
                         className="bg-white/80 text-valentine-dark font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
                     >
-                        {noClickCount >= 3 ? '🥺' : 'NO 😅'}
+                        {noClickCount >= 3 ? '🥺' : 'NO 😭'}
                     </motion.button>
                 </motion.div>
 

@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import FloatingHearts from './FloatingHearts'
 import TeddyBear from './TeddyBear'
-import { Music } from 'lucide-react'
 
 const QuestionScreen = ({ girlfriendName, onYesClick }) => {
     const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 })
@@ -13,21 +12,23 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
 
     const teaseMessages = [
         "Hey! You can't say no 😜",
-        "Come on, you know you want to say yes! 💕",
-        "The NO button is broken! Try YES instead 😘",
+        "Aisa Mat karo baabuu😣",
+        "Jhapar prega khikhihkhii😚",
         "Oops! Wrong button! Try the other one 💖",
         "I'll keep asking until you say yes! 😊",
         "Pretty please? 🥺💕"
     ]
 
     const handleNoHover = () => {
-        // Move NO button to random position
-        const maxX = window.innerWidth - 200
-        const maxY = window.innerHeight - 100
+        // Move NO button to random position - mobile friendly
+        const buttonWidth = 150
+        const buttonHeight = 60
+        const maxX = Math.min(window.innerWidth - buttonWidth - 40, 400)
+        const maxY = Math.min(window.innerHeight - buttonHeight - 40, 300)
 
         setNoButtonPosition({
-            x: Math.random() * maxX - maxX / 2,
-            y: Math.random() * maxY - maxY / 2,
+            x: (Math.random() - 0.5) * maxX,
+            y: (Math.random() - 0.5) * maxY,
         })
 
         showRandomTeaseMessage()
@@ -59,14 +60,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
             <TeddyBear pose="sitting" position="bottom-left" size="md" />
             <TeddyBear pose="wave" position="bottom-right" size="md" />
 
-            {/* Music Note Decoration */}
-            <motion.div
-                className="fixed top-8 right-8 text-valentine-pink opacity-30"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-            >
-                <Music size={48} />
-            </motion.div>
+
 
             {/* Main Card */}
             <motion.div
@@ -119,7 +113,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                         whileHover={{ scale: 1.1, y: -5 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{ scale: yesButtonScale }}
-                        className="bg-gradient-to-r from-valentine-pink to-valentine-dark text-white font-bold text-2xl px-16 py-5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 animate-glow"
+                        className="bg-gradient-to-r from-valentine-pink to-valentine-dark text-white font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 animate-glow"
                     >
                         YES 💕
                     </motion.button>
@@ -135,9 +129,9 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                             y: noButtonPosition.y,
                             scale: Math.max(0.5, 1 - noClickCount * 0.1),
                         }}
-                        transition={{ type: 'spring', stiffness: 300 }}
+                        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
                         whileHover={{ scale: 1.05 }}
-                        className="bg-white/80 text-valentine-dark font-bold text-2xl px-16 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
+                        className="bg-white/80 text-valentine-dark font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
                     >
                         {noClickCount >= 3 ? '🥺' : 'NO 😅'}
                     </motion.button>

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import FloatingHearts from './FloatingHearts'
 import TeddyBear from './TeddyBear'
@@ -10,6 +10,13 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
     const [yesButtonScale, setYesButtonScale] = useState(1)
     const noButtonRef = useRef(null)
 
+    // Set initial NO button position after component mounts
+    useEffect(() => {
+        const centerX = window.innerWidth / 2 + 100 // To the right of YES button
+        const centerY = window.innerHeight / 2 + 20 // Same level as YES button
+        setNoButtonPosition({ x: centerX, y: centerY })
+    }, [])
+
     const teaseMessages = [
         "Hey! You can't say no 😜",
         "Aisa Mat karo baabuu😣",
@@ -20,15 +27,15 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
     ]
 
     const handleNoHover = () => {
-        // Move NO button to random position - mobile friendly
+        // Move NO button to random position - anywhere on screen!
         const buttonWidth = 150
         const buttonHeight = 60
-        const maxX = Math.min(window.innerWidth - buttonWidth - 40, 400)
-        const maxY = Math.min(window.innerHeight - buttonHeight - 40, 300)
+        const maxX = window.innerWidth - buttonWidth - 40
+        const maxY = window.innerHeight - buttonHeight - 40
 
         setNoButtonPosition({
-            x: (Math.random() - 0.5) * maxX,
-            y: (Math.random() - 0.5) * maxY,
+            x: Math.random() * maxX,
+            y: Math.random() * maxY,
         })
 
         showRandomTeaseMessage()
@@ -60,7 +67,26 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
             <TeddyBear pose="sitting" position="bottom-left" size="md" />
             <TeddyBear pose="wave" position="bottom-right" size="md" />
 
-
+            {/* NO Button - Fixed position to move anywhere on screen */}
+            <motion.button
+                ref={noButtonRef}
+                onMouseEnter={handleNoHover}
+                onTouchStart={handleNoHover}
+                onClick={handleNoClick}
+                style={{
+                    position: 'fixed',
+                    left: noButtonPosition.x,
+                    top: noButtonPosition.y,
+                    zIndex: 9999,
+                }}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/80 text-valentine-dark font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+                {noClickCount >= 3 ? '🥺' : 'NO 😅'}
+            </motion.button>
 
             {/* Main Card */}
             <motion.div
@@ -100,14 +126,13 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                     Will you be my Valentine? 💖
                 </motion.h2>
 
-                {/* Buttons */}
+                {/* YES Button */}
                 <motion.div
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1.2, duration: 0.6 }}
-                    className="flex flex-wrap gap-6 justify-center items-center relative"
+                    className="flex justify-center"
                 >
-                    {/* YES Button */}
                     <motion.button
                         onClick={onYesClick}
                         whileHover={{ scale: 1.15, y: -8 }}
@@ -116,24 +141,6 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                         className="shimmer bg-gradient-to-r from-valentine-pink via-pink-500 to-valentine-dark text-white font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 animate-glow relative overflow-hidden"
                     >
                         YES 💕
-                    </motion.button>
-
-                    {/* NO Button */}
-                    <motion.button
-                        ref={noButtonRef}
-                        onMouseEnter={handleNoHover}
-                        onTouchStart={handleNoHover}
-                        onClick={handleNoClick}
-                        animate={{
-                            x: noButtonPosition.x,
-                            y: noButtonPosition.y,
-                            scale: Math.max(0.5, 1 - noClickCount * 0.1),
-                        }}
-                        transition={{ duration: 0.05 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="bg-white/80 text-valentine-dark font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
-                    >
-                        {noClickCount >= 3 ? '🥺' : 'NO 😭'}
                     </motion.button>
                 </motion.div>
 

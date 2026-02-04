@@ -129,7 +129,7 @@ const QuestionScreen = ({ girlfriendName, onYesClick }) => {
                             y: noButtonPosition.y,
                             scale: Math.max(0.5, 1 - noClickCount * 0.1),
                         }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+                        transition={{ type: 'spring', stiffness: 50, damping: 8 }}
                         whileHover={{ scale: 1.05 }}
                         className="bg-white/80 text-valentine-dark font-bold text-xl md:text-2xl px-8 md:px-16 py-4 md:py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
                     >
